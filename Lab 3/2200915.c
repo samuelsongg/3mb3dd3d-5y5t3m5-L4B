@@ -56,6 +56,7 @@ void gpio_callback(uint gpio, uint32_t events)
 
         stopwatch_started = true;
         printf("\nStopwatch has started\n");
+        // Start a timer to call repeating_timer_callback() function every 1 second.
         add_repeating_timer_ms(1000, repeating_timer_callback, NULL, &timer);
     }
     else if (!gpio_get(BTN_PIN) && stopwatch_started)
@@ -80,6 +81,7 @@ int main()
     gpio_set_dir(BTN_PIN, GPIO_IN);
     gpio_set_pulls(BTN_PIN, false, true);
 
+    // If a rising or falling edge is detected, call gpio_callback() function.
     gpio_set_irq_enabled_with_callback(BTN_PIN, GPIO_IRQ_EDGE_RISE | GPIO_IRQ_EDGE_FALL, true, &gpio_callback);
 
     while (1);
