@@ -37,7 +37,7 @@ int main()
 
     uint slice_num = pwm_gpio_to_slice_num(2);
     
-    // Set clock divisor to 100, reduce main clock to 1.25Mhz from 125Mhz.
+    // Set clock divisor to 100; reduce main clock to 1.25Mhz from 125Mhz.
     pwm_set_clkdiv(slice_num, 100);
     // Set period to 62500 cycles.
     // 1,250,000 (1.25Mhz) / 62500 = 20hz frequency.
